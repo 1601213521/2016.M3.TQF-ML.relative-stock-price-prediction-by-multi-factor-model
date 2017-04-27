@@ -8,6 +8,50 @@ for j=1:size(Stock(1).data,1)-1
     data_for_svm(j).data=temp;
 end
 
+%% Test the effeciency of these factors
+% Compute the IC of the factors (|IC|>0.4% mean the factor is very good)
+ic=[];
+for i=1:length(data_for_svm)
+    FactorData=data_for_svm(i).data;
+    for j=1:size(FactorData,2)-1
+        rho=corrcoef(FactorData(:,j),FactorData(:,end)/100);
+        ic(i,j)=rho(2);
+    end
+end
+IC=mean(ic);
+disp('IC of 13 factors:');disp(IC)
+
+% Show the monotony of these factors by graph (the more evident monotonic graph means the better factor)
+FactorMonotonyTest={};
+for i=1:length(data_for_svm)
+    FactorData=data_for_svm(i).data;
+    for j=1:size(FactorData,2)-1
+        [~,order]=sort(FactorData(:,j));
+        ret_factor=FactorData(:,end);
+        ret_factor=ret_factor(order);
+        group=floor(length(ret_factor)/10);
+        GroupRetur=[];
+        for k=1:9
+            GroupReturn(k)=mean(ret_factor(1+(k-1)*group:k*group));
+        end
+        GroupReturn(10)=mean(ret_factor(1+9*group:end));
+        FactorMonotonyTest(i,j)={GroupReturn};
+    end
+end
+FactorMonotonyReturn={};
+for j=1:size(FactorMonotonyTest,2)
+    GroupReturnMat=cell2mat(FactorMonotonyTest(:,j));
+    FactorMonotonyReturn{j}=(prod(1+GroupReturnMat/100)).^(1/10)-1;
+end
+bar(FactorMonotonyReturn{1});title(strcat('Factor:',Stock(1).fields(3+1-1)))
+figure
+bar(FactorMonotonyReturn{2});title(strcat('Factor:',Stock(1).fields(3+2-1)))
+figure
+bar(FactorMonotonyReturn{8});title(strcat('Factor:',Stock(1).fields(3+8-1)))
+figure
+bar(FactorMonotonyReturn{13});title(strcat('Factor:',Stock(1).fields(3+13-1)))
+
+%% SVM calculation
 % one year(current year) for training, one year(next year) for testing
 accuracy=[];accuracy_pca=[];
 for i=1:length(data_for_svm)-3
@@ -140,5 +184,6 @@ end
 Index_chg=Index(2:end,2)';
 netvalue_Long=[1,cumprod(1+LongPortReturn(2:end)/100)]';
 netvalue_Index=[1,cumprod(1+Index_chg(2:end)/100)]';
+figure
 plot(Stock(1).time(2:end),[netvalue_Long,netvalue_Index])
 legend('LongPortReturn','IndexReturn')
