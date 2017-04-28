@@ -33,12 +33,13 @@ account receivable
 Mainly use SVM model, and PCA is used.
 
 ### Data
-I get the data from Wind financial database, and do the data processing in MATLAB and save them as Excel files. Here in each data file, there are one year's factors data of all firms and the following year's return data.
+I get the data from Wind financial database, and do the data processing in MATLAB and save them as Excel files. Here(\Data) in each data file (named 'data1.xlsx' to 'da10.xlsx'), there are one year's factors data of all firms and the following year's return data. and 'index.xlsx' contains the price and percentage change data of CSI 800 index.
 
 As the data period is from 2005 to 2015, I just choose the firms which are listed before 2005. Then those firms without complete data of these factors selected are deleted from the samples, and 1037 stocks left. So there is data of ten years (2005-2015), and 1037 samples in each year.
 
 ### Implementation
 * [Python notebook file: Stock price prediction by multi factor model](Stock_price_prediction_by_multi_factor_model.ipynb)
+* [MATLAB code: Stock price prediction by multi factor model](https://github.com/1601213521/2016.M3.TQF-ML.relative-stock-price-prediction-by-multi-factor-model/blob/master/MatlabCode/SVMcalculation.m)
 
 ### Conclusion
 The SVM, with the 13 factors above, is effective to predict the stock relative return compared to CSI 800 index, with the average accuracy about 56%. And the strategy based on the prediction can be profitable.
