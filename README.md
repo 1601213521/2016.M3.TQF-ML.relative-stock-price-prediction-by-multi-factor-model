@@ -1,8 +1,7 @@
 ## 2016.M3.TQF-ML.relative-stock-price-prediction-by-multi-factor-model
 
 ### Project Description
-This project would try to predict the stock return relative to market index by SVM method. Absolute stock price prediction is difficult and senseless, however relative stock return's prediction may be feasible and there are many relavant researches. After reading several analysis reports about multi-factor model, I chose 13 factors from the reports to do this analysis. Next I make the predition by SVM method and find some pattern, and then set up a simple strategy to show the usefulness of the pattern. See the [proposal](Proposal.pdf).
-
+This project would try to predict the stock return relative to market index by SVM method. Absolute stock price prediction is difficult and senseless, however relative stock return's prediction may be feasible and there are many relavant researches. After reading several analysis reports about multi-factor model, I chose 13 factors from the reports to do this analysis. Next I make the predition by SVM method and find some pattern, and then set up a simple strategy to show the usefulness of the pattern. See the [proposal](Fu Lucheng_Proposal.pdf).
 
 ### Step Process and Main Result
 First of all, before implement the analysis, I have to check the efficiency of these factors I selecte. I compute the IC ratio and check the form of monotony, which are common methods to check the efficiency of single factor. The results show that the IC ratios of most of factors selected are significant and several are bigger than 4% or even 10% in absolute value. In addition, the monotonicity test results are also good, and the graphs present obvious monotonicity in the return on the factors. Therefore these factors can be considered efficient and I can use them for further analysis.
@@ -14,7 +13,6 @@ Thirdly, due to the uselessness of PCA here, I use another method check and dele
 Forth step: do the final predicion test. With all ten-year data and the rest 8 factors, by the SVM model, I get the final accuracy results, 56.7% in average.
 
 Final step: set up a simple strategy according to the results above. As the predition accuracy is stably over 50%, we can think of a simple strategy to see whether this pattern can be used for investment. Buy all the stocks that are predicted to perform better than market in equal weights, and hold them for a whole year. As final result shows, net value of the strategy is much better than the market index. So if short selling is allowed, long all these stocks and short the market index ETF may be a good chance to earn some money. 
-
 
 ### Features/Factors
 total market value
