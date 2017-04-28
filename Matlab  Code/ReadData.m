@@ -1,3 +1,7 @@
+% without the account of wind, this m file cannnot run. 
+% as the data obtained in this file has been saved in 'Stock.mat', we can
+% directly run the m file 'SVMcalculation.m'
+
 load('StockCodes0.mat');  % stock codes listed before 2005
 StartTime='2005-12-31';
 EndTime='2015-12-31';
