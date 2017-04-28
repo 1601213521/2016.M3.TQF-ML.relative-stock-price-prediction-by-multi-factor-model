@@ -38,7 +38,7 @@ I get the data from Wind financial database, and do the data processing in MATLA
 As the data period is from 2005 to 2015, I just choose the firms which are listed before 2005. Then those firms without complete data of these factors selected are deleted from the samples, and 1037 stocks left. So there is data of ten years (2005-2015), and 1037 samples in each year.
 
 ### Implementation
-* [Python notebook file: Stock price prediction by multi factor model](Stock price prediction by multi factor model.ipynb)
+* [Python notebook file: Stock price prediction by multi factor model](Stock_price_prediction_by_multi_factor_model.ipynb)
 
 ### Conclusion
 The SVM, with the 13 factors above, is effective to predict the stock relative return compared to CSI 800 index, with the average accuracy about 56%. And the strategy based on the prediction can be profitable.
